@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+template <typename T>
+void sapXepTangDan(T *arr, int n) {
+    for (int i = 1; i < n; i++) {
+        T key = arr[i];
+        int a = i - 1;
+        while (a >= 0 && arr[a] > key) {
+            arr[a + 1] = arr[a];
+            a--;
+        }
+        arr[a + 1] = key;
+    }
+}
+template <typename T>
+T tinhGiaTriTrungBinh(T *arr, int n) {
+    T tong = 0;
+    for (int i = 0; i < n; i++) {
+        tong += arr[i];
+    }
+    return tong / n;
+}
+int main() {
+    int n;
+    cout << "Nhap so luong gia tri: ";
+    cin >> n;
+    double *giaTri = new double[n];
+    cout << "Nhap cac gia tri: ";
+    for (int i = 0; i < n; i++) {
+        cin >> giaTri[i];
+    }
+    sapXepTangDan(giaTri, n);
+    double giaTriTrungBinh = tinhGiaTriTrungBinh(giaTri, n);
+    cout << "\nDanh sach gia tri da sap xep:\n";
+    for (int i = 0; i < n; i++) {
+        cout << giaTri[i] << " ";
+    }
+    cout << endl;
+    cout << "Gia tri trung binh: " << giaTriTrungBinh << endl;
+    delete[] giaTri;
+
+    return 0;
+}
