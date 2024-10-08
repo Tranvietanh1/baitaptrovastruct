@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void sapXepGiamDan(string *ten, int *diem, int n) {
+    for (int i = 1; i < n; i++) {
+        string keyTen = ten[i];
+        int keyDiem = diem[i];
+        int a = i - 1;
+        while (a >= 0 && diem[a] < keyDiem) {  
+            ten[a + 1] = ten[a];
+            diem[a + 1] = diem[a];
+            a--;
+        }
+        ten[a + 1] = keyTen;
+        diem[a + 1] = keyDiem;
+    }
+}
+
+int main() {
+    int n;
+    cout << "Nhap so luong hoc sinh: ";
+    cin >> n;
+    string *ten = new string[n];
+    int *diem = new int[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Nhap ten hoc sinh thu " << i + 1 << ": ";
+        cin >> ten[i];
+        cout << "Nhap diem cua " << ten[i] << ": ";
+        cin >> diem[i];
+    }
+    sapXepGiamDan(ten, diem, n);
+    cout << "\nDanh sach hoc sinh va diem sau khi sap xep:\n";
+    for (int i = 0; i < n; i++) {
+        cout << ten[i] << ": " << diem[i] << endl;
+    }
+    delete[] ten;
+    delete[] diem;
+
+    return 0;
+}
