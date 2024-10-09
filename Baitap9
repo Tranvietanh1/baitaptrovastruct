@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int* createEvenIndexArray(int arr[], int size) {
+    int newSize = (size + 1) / 2;
+    int* newArr = new int[newSize];
+    int a = 0;
+    for (int i = 0; i < size; i += 2) {
+        newArr[a] = arr[i];
+        a++;
+    }
+    return newArr;
+}
+
+int main() {
+    int arr[] = {11, 12, 13, 14, 15, 16};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int* evenArray = createEvenIndexArray(arr, size);
+    for (int i = 0; i < (size + 1) / 2; i++) {
+        cout << evenArray[i] << " ";
+    }   
+    cout << endl;
+    delete[] evenArray;
+
+    return 0;
+}
