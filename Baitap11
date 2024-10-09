@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+int* createMultipleArray(int arr[], int size, int divisor) {
+    int* newArr = new int[size];
+    int newSize = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] % divisor == 0) {
+            newArr[newSize] = arr[i];
+            newSize++;
+        }
+    }
+    int* finalArr = new int[newSize];
+    for (int i = 0; i < newSize; i++) {
+        finalArr[i] = newArr[i];
+    }
+    delete[] newArr;
+
+    return finalArr;
+}
+
+int main() {
+    int arr[] = {3, 5, 6, 12, 24};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int divisor = 3;
+
+    int* result = createMultipleArray(arr, size, divisor);
+    int newSize = 0;
+    while (result[newSize] != 0) {
+        newSize++;
+    }
+    for (int i = 0; i < newSize; i++) {
+        cout << result[i] << " ";
+    }
+    cout << endl;
+    delete[] result;
+
+    return 0;
+}
