@@ -1,0 +1,42 @@
+#include <iostream>
+
+using namespace std;
+
+int findMode(int *arr, int size) {
+    int *freq = new int[size]; 
+    int mode = -1, maxFreq = 0;
+    for (int i = 0; i < size; i++) {
+        freq[i] = 0;
+    }
+    int *ptr = arr;
+    for (int i = 0; i < size; i++) {
+        freq[*ptr]++;
+        if (freq[*ptr] > maxFreq) {
+            maxFreq = freq[*ptr];
+            mode = *ptr;
+        }
+        ptr++;
+    }
+    if (maxFreq > 1) {
+        return mode;
+    } else {
+        return -1;
+    }
+
+    delete[] freq; 
+}
+
+int main() {
+    int arr[] = {3, 2, 2, 1, 2, 4};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    int result = findMode(arr, size);
+
+    if (result != -1) {
+        cout << "Mode: " << result << endl;
+    } else {
+        cout << "Không có mode." << endl;
+    }
+
+    return 0;
+}
